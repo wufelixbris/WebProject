@@ -10,7 +10,7 @@ var db = new sqlite3.Database('testDB.db');
 /* GET registration page. */
 router.get('/', function(req, res, next) {
     res.render('register', {title: 'register'});
-    });
+});
 
 router.post('/insert', function(req, res){
     var resultArray = [];
