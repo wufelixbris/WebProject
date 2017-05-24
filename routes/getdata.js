@@ -14,8 +14,6 @@ exports.index = function(req, res){
             resultArray.push(row);
         });
     });
-    db.close();
-};
     db.all("SELECT * FROM Person", function(err, rows){
         console.log(rows);
         res.render('getdata', {title: 'getdata', items: rows});
