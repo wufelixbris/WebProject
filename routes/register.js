@@ -18,15 +18,7 @@ router.post('/insert', function(req, res){
         db.run("INSERT INTO Person (email, username, password) VALUES (?, ?, ?)", [req.body.email, req.body.username, req.body.password]);
         db.each("SELECT * FROM Person", function(err, row){
             resultArray.push(row);
-            console.log(resultArray.length);
         });
-        var size = resultArray.length;
-
-        for (var i = 0; i < size; i++) {
-            console.log(resultArray[i]);
-            alert(resultArray[i]);
-            console.log("hi");
-        }
     });
     res.redirect('/register');
 });
