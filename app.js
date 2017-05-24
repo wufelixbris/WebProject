@@ -23,7 +23,6 @@ db.serialize(function(){
 });
 db.close();
 
-
 var home = require('./routes/home');
 var FAQ = require('./routes/FAQ');
 var About = require('./routes/About');
@@ -53,6 +52,7 @@ app.get('/Donate', Donate.index);
 app.get('/register', register.index);
 app.get('/getdata', getdata.index);
 app.use('/login', login);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
