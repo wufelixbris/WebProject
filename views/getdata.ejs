@@ -11,13 +11,13 @@
 
     <!-- data body -->
     <h1>Get Data</h1>
-    <div>
-        <article class="item">
-            <div>Email: <%= email %></div>
-            <div>Username: <%= username %></div>
-            <div>Password: <%= password %></div>
-        </article>
-    </div>
+    <ul>
+        <% for(var i=0; i<items.length; i++){ %>
+            <li><%= items[i].email %></li>
+            <li><%= items[i].username %></li>
+            <li><%= items[i].password %></li>
+        <% } %>
+    </ul>
     <% include Template/footer.ejs %>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
