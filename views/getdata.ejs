@@ -9,9 +9,15 @@
 
     <% include Template/header.ejs %>
 
-    <!-- Donation body -->
-    <div>Donation plugin</div>
-
+    <!-- data body -->
+    <h1>Get Data</h1>
+    <ul>
+        <% for(var i=0; i<items.length; i++){ %>
+            <li><%= items[i].email %></li>
+            <li><%= items[i].username %></li>
+            <li><%= items[i].password %></li>
+        <% } %>
+    </ul>
     <% include Template/footer.ejs %>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

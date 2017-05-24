@@ -9,8 +9,20 @@
 
     <% include Template/header.ejs %>
 
-    <!-- Donation body -->
-    <div>Donation plugin</div>
+    <!-- login body -->
+
+    <h1>Login</h1>
+    <form method="post" action="/login/submit" >
+        <div class="input">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control" placeholder="Username">
+        </div>
+        <div class="input">
+            <label for="password">Password</label>
+            <input type="text" name="password" class="form-control" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-default">submit</button>
+    </form>
 
     <% include Template/footer.ejs %>
 
