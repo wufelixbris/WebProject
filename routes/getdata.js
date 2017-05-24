@@ -5,19 +5,19 @@
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('testDB.db');
 
-/* GET registration page. */
+/* GET data page. */
 
 exports.index = function(req, res){
+    var resultArray = [];
     db.serialize(function(){
         db.each("SELECT * FROM Person", function(err, row){
-            res.render('register', {
-                title: 'register',
-                email: row.email,
-                username: row.username,
-                password: row.password
-            });
+            resultArray.push(row);
         });
     });
     db.close();
 };
-
+    db.all("SELECT * FROM Person", function(err, rows){
+        console.log(rows);
+        res.render('getdata', {title: 'getdata', items: rows});
+    });
+};

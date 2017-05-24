@@ -9,13 +9,10 @@
 
     <% include Template/header.ejs %>
 
-    <!-- Registration body -->
-    <h1>registration</h1>
-    <form method="post" action="/register/insert" >
-        <div class="input">
-            <label for="email">Email</label>
-            <input type="text" name="email" class="form-control" placeholder="Email">
-        </div>
+    <!-- login body -->
+
+    <h1>Login</h1>
+    <form method="post" action="/login/submit" >
         <div class="input">
             <label for="username">Username</label>
             <input type="text" name="username" class="form-control" placeholder="Username">
@@ -26,7 +23,6 @@
         </div>
         <button type="submit" class="btn btn-default">submit</button>
     </form>
-
 
     <% include Template/footer.ejs %>
 

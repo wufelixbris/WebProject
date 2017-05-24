@@ -9,6 +9,13 @@ exports.index = function(req, res){
 };
 exports.insert = function(req, res){
     console.log(req.body);
+    var resultArray = [];
+    db.serialize(function(){
+        db.run("INSERT INTO Person (email, username, password) VALUES (?, ?, ?)", [req.body.email, req.body.username, req.body.password]);
+        db.each("SELECT * FROM Person", function(err, row){
+            resultArray.push(row);
+        });
+    });
     res.get(index);
     /*redirect('/register');*/
 };
