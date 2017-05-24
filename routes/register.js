@@ -2,17 +2,13 @@
  * Created by FelixWu on 24/5/2017.
  */
 'use strict';
-var express = require('express');
-var router = express.Router();
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('testDB.db');
-
-/* GET registration page. */
-router.get('/', function(req, res, next) {
+exports.index = function(req, res){
     res.render('register', {title: 'register'});
-});
-
-router.post('/insert', function(req, res){
+};
+exports.insert = function(req, res){
+    console.log(req.body);
     var resultArray = [];
     db.serialize(function(){
         db.run("INSERT INTO Person (email, username, password) VALUES (?, ?, ?)", [req.body.email, req.body.username, req.body.password]);
@@ -20,7 +16,6 @@ router.post('/insert', function(req, res){
             resultArray.push(row);
         });
     });
-    res.redirect('/register');
-});
-
-module.exports = router;
+    res.get(index);
+    /*redirect('/register');*/
+};
