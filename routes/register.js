@@ -7,7 +7,7 @@ var db = new sqlite3.Database('testDB.db');
 exports.index = function(req, res){
     res.render('register', {title: 'register'});
 };
-exports.insert = function(req, res){
+exports.registerUser = function(req, res){
     console.log(req.body);
     var resultArray = [];
     db.serialize(function(){

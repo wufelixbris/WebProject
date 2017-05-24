@@ -50,6 +50,7 @@ app.get('/FAQ', FAQ.index);
 app.get('/About', About.index);
 app.get('/Donate', Donate.index);
 app.get('/register', register.index);
+app.post('/register/registerUser', register.registerUser);
 app.get('/getdata', getdata.index);
 app.use('/login', login);
 
