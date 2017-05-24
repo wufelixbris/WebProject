@@ -12,4 +12,9 @@ router.get('/', function(req, res, next) {
     res.render('register', {title: 'register'});
     });
 
+router.post('/insert', function(req, res){
+    console.log(req.body);
+    res.redirect('/register');
+});
+
 module.exports = router;
