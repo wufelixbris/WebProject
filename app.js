@@ -19,7 +19,7 @@ db.serialize(function(){
 });
 db.close();
 
-var index = require('./routes/index');
+var home = require('./routes/home');
 var FAQ = require('./routes/FAQ');
 var About = require('./routes/About');
 var Donate = require('./routes/Donate');
@@ -41,13 +41,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/FAQ', FAQ);
-app.use('/About', About);
-app.use('/Donate', Donate);
-app.use('/register', register);
-app.use('/getdata', getdata);
-
+app.get('/', home.index);
+app.get('/FAQ', FAQ.index);
+app.get('/About', About.index);
+app.get('/Donate', Donate.index);
+app.get('/register', register.index);
+app.get('/getdata', getdata.index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
