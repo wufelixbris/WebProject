@@ -58,7 +58,8 @@ app.get('/register', register.index);
 app.post('/register/registerUser', register.registerUser);
 app.get('/getdata', getdata.index);
 app.use('/login', login);
-app.use('/addListing', addListing);
+app.get('/addListing', addListing.index);
+app.post('/addListing/addItem', addListing.addItem);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
