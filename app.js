@@ -16,7 +16,8 @@ db.serialize(function(){
   db.run("DROP Table IF EXISTS Item");
   db.run("DROP Table IF EXISTS Person");
   db.run("CREATE TABLE Person (ID INTEGER PRIMARY KEY AUTOINCREMENT, email UNIQUE NOT NULL, username UNIQUE NOT NULL, password NOT NULL)");
-  db.run("CREATE TABLE Item (ID INTEGER PRIMARY KEY AUTOINCREMENT, owner NOT NULL, price NOT NULL, description, dateTime DATETIME NOT NULL, FOREIGN KEY(owner) REFERENCES Person(ID))");
+  db.run("CREATE TABLE Item (ID INTEGER PRIMARY KEY AUTOINCREMENT, name NOT NULL, price NOT NULL, description, category)");
+  //db.run("CREATE TABLE Item (ID INTEGER PRIMARY KEY AUTOINCREMENT, name NOT NULL, owner NOT NULL, price NOT NULL, description, dateTime DATETIME NOT NULL, FOREIGN KEY(owner) REFERENCES Person(ID))");
   db.run("CREATE TABLE Comment (ID INTEGER PRIMARY KEY AUTOINCREMENT, owner NOT NULL, item NOT NULL, content NOT NULL, FOREIGN KEY(owner) REFERENCES Person(ID), FOREIGN KEY(item) REFERENCES Item(ID))");
   db.run("INSERT INTO Person (email, username, password) Values(?, ?, ?)", ['hello', 'h123', '0000']);
   db.each("SELECT* FROM Person", function(err, row){
@@ -33,6 +34,7 @@ var register = require('./routes/register');
 var register = require('./routes/register');
 var getdata = require('./routes/getdata');
 var login = require('./routes/login');
+var addListing = require('./routes/addListing');
 
 var app = express();
 
@@ -56,7 +58,7 @@ app.get('/register', register.index);
 app.post('/register/registerUser', register.registerUser);
 app.get('/getdata', getdata.index);
 app.use('/login', login);
-
+app.use('/addListing', addListing);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
