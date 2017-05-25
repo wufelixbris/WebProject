@@ -16,7 +16,5 @@ exports.registerUser = function(req, res){
             console.log(row);
         });
     });
-    res.get(index);
-    //console.log(resultArray);
-    //res.redirect('/register');
+    res.redirect('/register');
 };
