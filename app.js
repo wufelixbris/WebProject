@@ -16,7 +16,7 @@ db.serialize(function(){
   db.run("CREATE TABLE Person (ID INTEGER PRIMARY KEY AUTOINCREMENT, email UNIQUE NOT NULL, username UNIQUE NOT NULL, password NOT NULL)");
   db.run("CREATE TABLE Item (ID INTEGER PRIMARY KEY AUTOINCREMENT, name NOT NULL, price NOT NULL, description, category)");
   //db.run("CREATE TABLE Item (ID INTEGER PRIMARY KEY AUTOINCREMENT, name NOT NULL, owner NOT NULL, price NOT NULL, description, dateTime DATETIME NOT NULL, FOREIGN KEY(owner) REFERENCES Person(ID))");
-  db.run("CREATE TABLE Comment (ID INTEGER PRIMARY KEY AUTOINCREMENT, owner NOT NULL, item NOT NULL, content NOT NULL, FOREIGN KEY(owner) REFERENCES Person(ID), FOREIGN KEY(item) REFERENCES Item(ID))");
+  //db.run("CREATE TABLE Comment (ID INTEGER PRIMARY KEY AUTOINCREMENT, owner NOT NULL, item NOT NULL, content NOT NULL, FOREIGN KEY(owner) REFERENCES Person(ID), FOREIGN KEY(item) REFERENCES Item(ID))");
   db.run("INSERT INTO Person (email, username, password) Values(?, ?, ?)", ['hello', 'h123', '0000']);
   db.each("SELECT* FROM Person", function(err, row){
       console.log(row);
