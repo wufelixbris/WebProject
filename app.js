@@ -28,6 +28,7 @@ var FAQ = require('./routes/FAQ');
 var About = require('./routes/About');
 var Donate = require('./routes/Donate');
 var register = require('./routes/register');
+var register = require('./routes/register');
 var getdata = require('./routes/getdata');
 var login = require('./routes/login');
 
