@@ -26,11 +26,11 @@
 
       <div class="row">
           <% for(var i=0; i<items.length; i++){ %>
-              <div class="panel panel-default" id="<%= items[i].ID %>">
-                <div class="panel-heading"><h3 class="panel-title"><%= items[i].name %></h3></div>
-                  <div class="panel-body">Price: <%= items[i].price %></div>
-                  <div class="panel-body">Description: <%= items[i].description %></div>
-            </div>
+          <div class="panel panel-default" id = "<%= lParam1.concat(items[i].ID) %>">
+              <div class="panel-heading" id = "<%= lParam2.concat(items[i].ID) %>"><h3 class="panel-title"><%= items[i].name %></h3></div>
+              <div class="panel-body" id = "<%= lParam3.concat(items[i].ID) %>"> Price: <%= items[i].price %></div>
+              <div class="panel-body" id = "<%= lParam4.concat(items[i].ID) %>"> Description: <%= items[i].description %></div>
+          </div>
           <% } %>
       </div>
 

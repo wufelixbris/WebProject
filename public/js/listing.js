@@ -5,20 +5,24 @@ else attachEvent('onload', start); //polyfill
 
 
 function start() {
-    var panels = document.getElementsByClassName("panel panel-default");
-    for (var i = 0; i < panels.length; i++) {
-        if (panels.length === 0) return;
-        var ident = panels[i].id
-        panels[i].addEventListener('click', highlightRow(ident))};
-    }
-
-/* handle event */
-function highlightRow(ident) {
-        var head = document.getElementById(""+ident+"");
-        var child = head.querySelector("h3");
-        child.style.backgroundColor = "#8c001a";
-        console.log("hi naan");
-};
+    document.querySelector('body').addEventListener('click', function (event) {
+        var sourceID = event.target.id.slice(1);
+        switch (event.target.className.split(' ')[0]) {
+            case 'panel':
+            case 'panel-body':
+            case 'panel-header':
+            case 'panel':
+                console.log("yes naan!");
+                document.getElementById('A'.concat(sourceID)).classList.toggle('panel-selected');
+                break;
+            default:
+                var selected = [].slice.apply(document.getElementsByClassName("panel-selected"));
+                for (var i = 0; i < selected.length; i++){
+                    selected[i].classList.toggle('panel-selected');
+                };
+        }
+    });
+}
 
 /*polyfill to make above code work in IE8 taken from github https://gist.github.com/chriswrightdesign/7573368 */
  (function() {

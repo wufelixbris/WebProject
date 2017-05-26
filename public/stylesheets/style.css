@@ -80,11 +80,12 @@ a {
     margin: 15px;
 }
 
-.panel:hover {
-    border: 3px solid #ec971f;
-    box-shadow; 0 0 3px #ec971f;
+.panel:hover, .panel-selected{
+    border: 5px solid #79466e;
+    box-shadow; 0 0 10px #79466e;
     outline: none;
 }
+
 .row{
     margin-left:20%;
     margin-right:20%;
