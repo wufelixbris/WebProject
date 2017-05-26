@@ -61,4 +61,3 @@ function validateRegistration(data) {
         return Promise.reject(errors);
     })
 }
-
