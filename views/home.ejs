@@ -10,13 +10,62 @@
   <% include Template/header.ejs %>
   <% include Template/searchBar.ejs %>
 
+  <!--<div class="container-fluid" id="addListing">-->
+    <!--<form class="navbar-form">-->
+      <!--<div class="form-group">-->
+        <!--<input type="text" class="form-control" placeholder="Product Name" v-models="newListing">-->
+        <!--&lt;!&ndash;<input type="text" class="form-control" placeholder="Product Price" v-models="newListing.price">&ndash;&gt;-->
+        <!--&lt;!&ndash;<input type="text" class="form-control" placeholder="Description" v-models="newListing.description">&ndash;&gt;-->
+      <!--</div>-->
+      <!--<button v-on:click="addItem" class="btn btn-default">Add Listing</button>-->
+    <!--</form>-->
+  <!--</div>-->
+
   <!-- listings body -->
   <div>LISTINGS...</div>
   <a href="/getdata">getdata</a>
+      <div class="row">
+          <% for(var i=0; i<items.length; i++){ %>
+            <div class="col-sm-4">
+              <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title"><%= items[i].name %></h3></div>
+                  <div class="panel-body">Price: <%= items[i].price %></div>
+                  <div class="panel-body">Description: <%= items[i].description %></div>
+              </div>
+            </div>
+          <% } %>
+      </div>
+
+
+  <!--<ul>-->
+    <!--<li v-for="item in Listings" v-text="item"></li>-->
+    <!--&lt;!&ndash;<li v-for="item in Listings" v-text="item.price"></li>&ndash;&gt;-->
+    <!--&lt;!&ndash;<li v-for="item in Listings" v-text="item.description"></li><br>&ndash;&gt;-->
+  <!--</ul>-->
 
   <% include Template/footer.ejs %>
 
+  <script src="https://unpkg.com/vue@2.3.3/dist/vue.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!--<script>-->
+
+    <!--var app = new Vue({-->
+      <!--el: '#addListing',-->
+      <!--data: {-->
+          <!--newListing:'',-->
+          <!--Listings: ['book']-->
+      <!--},-->
+
+      <!--methods:{-->
+          <!--addItem(){-->
+            <!--this.Listings.push(this.newListing);-->
+            <!--//this.newListing = '';-->
+          <!--}-->
+      <!--}-->
+    <!--});-->
+
+  <!--</script>-->
   </body>
 </html>
