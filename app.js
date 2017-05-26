@@ -5,6 +5,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var bcrypt = require('bcrypt');
+
 
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('testDB.db');
