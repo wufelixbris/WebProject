@@ -1,9 +1,9 @@
 "use strict"
 
 if (addEventListener) window.addEventListener('load', start);
-else attachEvent('onload', start); //polyfill
+else attachEvent('onload', start); //polyfill for IE8 and below
 
-
+/* highlight a listing when it is selected */
 function start() {
     document.querySelector('body').addEventListener('click', function (event) {
         var sourceID = event.target.id.slice(1);

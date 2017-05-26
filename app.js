@@ -5,27 +5,34 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var Promise = require('bluebird');
 var bcrypt = require('bcrypt');
-
-
+var negotiate = require('express-negotiate');
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('testDB.db');
 
-db.serialize(function(){
-  db.run("DROP Table IF EXISTS Comment");
-  db.run("DROP Table IF EXISTS Item");
-  db.run("DROP Table IF EXISTS Person");
-  db.run("CREATE TABLE Person (ID INTEGER PRIMARY KEY AUTOINCREMENT, email UNIQUE NOT NULL, username UNIQUE NOT NULL, password NOT NULL)");
-  db.run("CREATE TABLE Item (ID INTEGER PRIMARY KEY AUTOINCREMENT, name NOT NULL, price NOT NULL, description, category)");
-  //db.run("CREATE TABLE Item (ID INTEGER PRIMARY KEY AUTOINCREMENT, name NOT NULL, owner NOT NULL, price NOT NULL, description, dateTime DATETIME NOT NULL, FOREIGN KEY(owner) REFERENCES Person(ID))");
-  //db.run("CREATE TABLE Comment (ID INTEGER PRIMARY KEY AUTOINCREMENT, owner NOT NULL, item NOT NULL, content NOT NULL, FOREIGN KEY(owner) REFERENCES Person(ID), FOREIGN KEY(item) REFERENCES Item(ID))");
-  db.run("INSERT INTO Person (email, username, password) Values(?, ?, ?)", ['hello', 'h123', '0000']);
-  db.each("SELECT* FROM Person", function(err, row){
-      console.log(row);
-  });
+/* suppress create drop if database exists*/
+db.all("SELECT * FROM Person", function(err, row){
+    if (err || row.length == 0) {
+        db.serialize(function () {
+            db.run("DROP Table IF EXISTS Comment");
+            db.run("DROP Table IF EXISTS Item");
+            db.run("DROP Table IF EXISTS Person");
+            db.run("CREATE TABLE Person (ID INTEGER PRIMARY KEY AUTOINCREMENT, email UNIQUE NOT NULL, username UNIQUE NOT NULL, password NOT NULL)");
+            db.run("CREATE TABLE Item (ID INTEGER PRIMARY KEY AUTOINCREMENT, name NOT NULL, price NOT NULL, description, category)");
+            //db.run("CREATE TABLE Item (ID INTEGER PRIMARY KEY AUTOINCREMENT, name NOT NULL, owner NOT NULL, price NOT NULL, description, dateTime DATETIME NOT NULL, FOREIGN KEY(owner) REFERENCES Person(ID))");
+            //db.run("CREATE TABLE Comment (ID INTEGER PRIMARY KEY AUTOINCREMENT, owner NOT NULL, item NOT NULL, content NOT NULL, FOREIGN KEY(owner) REFERENCES Person(ID), FOREIGN KEY(item) REFERENCES Item(ID))");
+            db.run("INSERT INTO Person (email, username, password) Values(?, ?, ?)", ['testuser@mail.com', 'testuser', 'a0123456']);
+            db.each("SELECT* FROM Person", function (err, row) {
+                console.log(row);
+            });
+        });
+        db.close();
+    }
 });
-db.close();
 
+
+/*  set up routing */
 var home = require('./routes/home');
 var FAQ = require('./routes/FAQ');
 var About = require('./routes/About');
@@ -37,7 +44,6 @@ var login = require('./routes/login');
 var addListing = require('./routes/addListing');
 
 var app = express();
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -49,6 +55,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+/* content negotiation (not session based yet) */
+app.get('/*', function(req, res, next) {
+    if (req.accepts('application/xhtml+xml')){
+        res.header('Content-Type', 'application/xhtml+xml');
+    }
+    if (req.accepts('text/html')){
+        res.header('Content-Type', 'text/html');
+    }
+    next();
+});
 
 app.get('/', home.index);
 app.get('/home', home.index);
