@@ -17,6 +17,6 @@ exports.addItem = function(req, res){
         });
     });
     //console.log('hello', req.body);
-    res.redirect('/addListing');
+    res.redirect('/home');
 };
 

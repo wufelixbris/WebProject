@@ -51,6 +51,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', home.index);
+app.get('/home', home.index);
 app.get('/FAQ', FAQ.index);
 app.get('/About', About.index);
 app.get('/Donate', Donate.index);

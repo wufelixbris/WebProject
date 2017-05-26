@@ -1,24 +1,26 @@
 "use strict"
 
-if (addEventListener) addEventListener('load', start);
+if (addEventListener) window.addEventListener('load', start);
 else attachEvent('onload', start); //polyfill
 
-/* when the user clicks a listing we highlight it */
+
 function start() {
-    document.getElementsByClassName("panel panel-default").addEventListener('click', highlightRow());
-}
-
-/* could use CSS for this but let's try client side JavaScript */
-function highlightRow(event) {
-    let listingtitle = event.target.querySelector('panel-heading');
-    if (event.target.matches('.row')) {
-        listingtitle.style.backgroundColor = "#8c001a";
+    var panels = document.getElementsByClassName("panel panel-default");
+    for (var i = 0; i < panels.length; i++) {
+        if (panels.length === 0) return;
+        var ident = panels[i].id
+        panels[i].addEventListener('click', highlightRow(ident))};
     }
-    else listingtitle.style.backgroundColor = initial;
-}
 
-/*polyfill taken from github https://gist.github.com/chriswrightdesign/7573368 */
+/* handle event */
+function highlightRow(ident) {
+        var head = document.getElementById(""+ident+"");
+        var child = head.querySelector("h3");
+        child.style.backgroundColor = "#8c001a";
+        console.log("hi naan");
+};
 
+/*polyfill to make above code work in IE8 taken from github https://gist.github.com/chriswrightdesign/7573368 */
  (function() {
  if (!Event.prototype.preventDefault) {
  Event.prototype.preventDefault=function() {

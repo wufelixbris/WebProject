@@ -22,20 +22,17 @@
       <!--</div>-->
 
       <!-- listings body -->
-      <div>LISTINGS...</div>
-      <a href="/getdata">getdata</a>
-          <div class="row">
-              <% for(var i=0; i<items.length; i++){ %>
-                <div class="col-sm-4">
-                  <div class="panel panel-default">
-                    <div class="panel-heading"><h3 class="panel-title"><%= items[i].name %></h3></div>
-                      <div class="panel-body">Price: <%= items[i].price %></div>
-                      <div class="panel-body">Description: <%= items[i].description %></div>
-                  </div>
-                </div>
-              <% } %>
-          </div>
+      <div class="row">LISTINGS...</div>
 
+      <div class="row">
+          <% for(var i=0; i<items.length; i++){ %>
+              <div class="panel panel-default" id="<%= items[i].ID %>">
+                <div class="panel-heading"><h3 class="panel-title"><%= items[i].name %></h3></div>
+                  <div class="panel-body">Price: <%= items[i].price %></div>
+                  <div class="panel-body">Description: <%= items[i].description %></div>
+            </div>
+          <% } %>
+      </div>
 
       <!--<ul>-->
         <!--<li v-for="item in Listings" v-text="item"></li>-->
@@ -43,14 +40,13 @@
         <!--&lt;!&ndash;<li v-for="item in Listings" v-text="item.description"></li><br>&ndash;&gt;-->
       <!--</ul>-->
 
-      <% include Template/footer.ejs %>
 
       <script type ="text/javascript" src="/js/listing.js"></script>
-      <script src="https://unpkg.com/vue@2.3.3/dist/vue.js"></script>
+          <!--<script src="https://unpkg.com/vue@2.3.3/dist/vue.js"></script>-->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-      <!--<script>-->
+          <!--<script>-->
 
         <!--var app = new Vue({-->
           <!--el: '#addListing',-->
@@ -70,4 +66,5 @@
       <!--</script>-->
   </main>
   </body>
+  <% include Template/footer.ejs %>
 </html>

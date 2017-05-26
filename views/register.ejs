@@ -11,7 +11,9 @@
     <% include Template/header.ejs %>
 
     <!-- Registration body -->
-    <h1>registration</h1>
+    <div class = "row">
+
+    <h1>Sign up !</h1>
     <form method="post" action="/register/registerUser">
         <div class="input">
             <label for="email">Email</label>
@@ -29,13 +31,13 @@
             <label for="confirmPassword">Confirm password</label>
             <input type="text" name="confirmPassword" class="form-control" placeholder="confirmPassword">
         </div>
-        <button type="submit" class="btn btn-default">submit</button>
+        <button type="submit" class="btn btn-default submit-button">submit</button>
     </form>
-
-    <% include Template/footer.ejs %>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </div>
     </main>
     </body>
+    <% include Template/footer.ejs %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </html>
